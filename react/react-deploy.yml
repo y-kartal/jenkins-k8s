@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: react-deploy
+  name: react-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-deploy
+  template:
+    metadata:
+      labels:
+        app: react-deploy
+    spec:
+      containers:
+      - image: emrverskn/react-image
+        name: react
+        env:
+        - name: REACT_APP_BASE_URL
+          value: http://127.0.0.1:17238/
+        ports:
+        - containerPort: 3000
+        resources: {}
